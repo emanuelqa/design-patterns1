@@ -1,10 +1,15 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Orcamento {
 	
 	private double valor;
+	private final List<Item> itens;
 
 	public Orcamento(double valor) {
 		this.valor = valor;
+		this.itens = new ArrayList<Item>();
 	}
 
 	public double getValor() {
@@ -13,6 +18,13 @@ public class Orcamento {
 
 	public void setValor(double valor) {
 		this.valor = valor;
+	}
+	
+	public void adicionaItem(Item item) {
+		itens.add(item);
+	}
+	public List<Item> getItens() {
+		return Collections.unmodifiableList(itens);
 	}
 	
 }
