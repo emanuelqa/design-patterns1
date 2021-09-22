@@ -2,8 +2,8 @@
 public class ISS implements Imposto{
 
 	@Override
-	public double calculaImposto(double valor) {
-		double desconto = valor * 0.05;
+	public double calculaImposto(Orcamento orcamento) {
+		double desconto = orcamento.getValor() * 0.05;
 		return desconto;
 	}
 

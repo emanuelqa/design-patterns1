@@ -1,6 +1,6 @@
 
 public interface Imposto {
 
-	double calculaImposto(double valor);
+	double calculaImposto(Orcamento orcamento);
 	
 }
