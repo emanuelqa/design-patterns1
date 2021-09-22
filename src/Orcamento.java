@@ -4,12 +4,15 @@ import java.util.List;
 
 public class Orcamento {
 	
-	private double valor;
+	protected double valor;
 	private final List<Item> itens;
+	
+	protected EstadoDeUmOrcamento estadoAtual;
 
 	public Orcamento(double valor) {
 		this.valor = valor;
 		this.itens = new ArrayList<Item>();
+		estadoAtual = new EmAprovacao();
 	}
 
 	public double getValor() {
@@ -25,6 +28,22 @@ public class Orcamento {
 	}
 	public List<Item> getItens() {
 		return Collections.unmodifiableList(itens);
+	}
+	
+	public void aplicarDescontoExtra() {
+		estadoAtual.aplicaDescontoExtra(this);
+	}
+	
+	public void aprovado() {
+		estadoAtual.aprovado(this);
+	}
+	
+	public void reprovado() {
+		estadoAtual.reprovado(this);
+	}
+	
+	public void finalizado() {
+		estadoAtual.finalizado(this);
 	}
 	
 }
