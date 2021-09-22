@@ -1,10 +1,10 @@
 
-public abstract class TempleiteDeImpostoCondicional implements Imposto{
+public abstract class TempleiteDeImpostoCondicional extends Imposto{
 
 	@Override
-	public double calculaImposto(Orcamento orcamento) {
-		if(deveUsarTaxacaoMaxima(orcamento)) return maximaTaxacao(orcamento);
-		else return minimaTaxacao(orcamento);
+	public double calcula(Orcamento orcamento) {
+		if(deveUsarTaxacaoMaxima(orcamento)) return maximaTaxacao(orcamento) + calculoDoOutroImposto(orcamento);
+		else return minimaTaxacao(orcamento) + calculoDoOutroImposto(orcamento);
 	}
 
 	public abstract boolean deveUsarTaxacaoMaxima(Orcamento orcamento);

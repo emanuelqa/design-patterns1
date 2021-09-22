@@ -1,9 +1,15 @@
 
-public class ICMS implements Imposto{
+public class ICMS extends Imposto{
+	
+	public ICMS(Imposto outroImposto) {
+		super(outroImposto);
+	}
+	
+	public ICMS() {}
 
 	@Override
-	public double calculaImposto(Orcamento orcamento) {
-		double desconto = orcamento.getValor() * 0.1;
+	public double calcula(Orcamento orcamento) {
+		double desconto = orcamento.getValor() * 0.1 + calculoDoOutroImposto(orcamento);
 		return desconto;
 	}
 
