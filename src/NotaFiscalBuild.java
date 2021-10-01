@@ -11,6 +11,11 @@ public class NotaFiscalBuild {
 	private double impostos;
 	private List<ItemDaNota> todosIntens = new ArrayList<ItemDaNota>();
 	private String observacoes;
+	private List<AcaoAposGerarNota> acoes = new ArrayList<AcaoAposGerarNota>();
+	
+	public void addAcao(AcaoAposGerarNota acao) {
+		acoes.add(acao);
+	}
 	
 	
 	public NotaFiscalBuild paraEmpresa(String razaoSocial) {
@@ -40,7 +45,12 @@ public class NotaFiscalBuild {
 		return this;
 	}
 	public NotaFiscal builder() {
-		return new NotaFiscal(razaoSocial, cnpj, dataEmissao, valorBruto, impostos, todosIntens, observacoes);
+		NotaFiscal nf = new NotaFiscal(razaoSocial, cnpj, dataEmissao, valorBruto, impostos, todosIntens, observacoes);
+		
+		for (AcaoAposGerarNota acaoAposGerarNota : acoes) {
+			acaoAposGerarNota.executar(nf);
+		}
+		return nf;
 	}
 
 }
